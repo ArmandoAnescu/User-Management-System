@@ -5,8 +5,6 @@ File creazione tabella
 */
 $orderDirClass=$orderDir;
 $orderDir=$orderDir==='ASC'?'DESC':'ASC'; //per fare l'ordinamento crescente o decrescente
-$orderDirClass=$orderDir;
-
 ?>
 <style>
 .table thead th.ASC:after ,.table thead th.DESC:after   {
@@ -31,7 +29,7 @@ $orderDirClass=$orderDir;
     </thead>
     <tbody>
         <?php
-            if($user){//controllo che gli user esistano altrimentii dico che non ho trovato nulla
+            if($user){//controllo che gli user esistano altrimenti dico che non ho trovato nulla
                 foreach($user as $utente){?>
                 <tr>
                     <td><?= $utente['id'];?></td>

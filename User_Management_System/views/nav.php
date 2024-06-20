@@ -33,9 +33,31 @@ $newActive=$action==='insert' ?'active':'';//quando vado nella pagine new user c
             <a class="nav-link disabled" aria-disabled="true">Disabled</a>
           </li> -->
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="g-3" method="GET"  role="search" id="searchForm">
+          <div class="row">
+          <div class="col">
+          <label class="form-label text-bg-dark mt-2" for="recordsPerPage">Records</label>
+          </div>
+          <div class="col">
+          <select class="form-select"  name="recordsPerPage" id="recordsPerPage"
+          onchange="document.forms.searchForm.submit()">
+          <option value="">SELECT</option>
+            <?php
+              foreach($recordsPerPageOptions as $key=>$v){
+                $v=(int)$v;
+                $selected=$v===$recordsPerPage ? 'selected':'';
+                echo "<option $selected value='$v'>$v </option> \n";
+              }
+            ?>
+          </select>
+          </div> 
+          <div class="col">
+          <input name="search"  value="<?=$search?>" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          </div>
+          <div class="col">  
           <button class="btn btn-outline-success" type="submit">Search</button>
+          </div>  
+        </div>
         </form>
       </div>
     </div>

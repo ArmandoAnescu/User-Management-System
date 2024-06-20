@@ -7,6 +7,12 @@ main page
 error_reporting(E_ALL);
 ini_set('display_errors',1);
 require_once 'functions.php';
+$recordsPerPageOptions=getConfig('recordsPerPageOptions',[5,10,15,25]);
+$recordsPerPageDefault=getConfig('recordsPerPage',10);
+$recordsPerPage=(int)getParam('recordsPerPage',$recordsPerPageDefault);
+$search=getParam('search','');
+$search=trim($search);
+$search=strip_tags($search);
 require_once 'views/top.php';//aggiungo la nav bar, le funzioni e la parte sotto
 require_once 'views/nav.php';
 ?>
@@ -21,13 +27,17 @@ require_once 'views/nav.php';
     $action=getParam('action');//prendo parametri di ricerca
     switch($action){
       default:
-        $orderDir=getParam('orderDir','DESC');
+        $orderDir=getParam('orderDir');
         $orderByColumns=getConfig('orderByColumns',[]); 
         $orderBy=getParam('orderBy');
         $orderBy=in_array($orderBy,$orderByColumns)?$orderBy:null;
         $params=[];
-        $recordsPerPage=getConfig('recordsPerPage');
-        $params=['orderBy'=>$orderBy,'recordsPerPage'=>$recordsPerPage,'orderDir'=>$orderDir];
+        $params=[
+          'orderBy'=>$orderBy,
+          'recordsPerPage'=>$recordsPerPage,
+          'orderDir'=>$orderDir,
+          'search'=>$search
+        ];
         $user=getUsers($params);//di default prende gli user
         require 'views/userList.php';//richiedo il file che crea la tabella che in automatico ha user perchè lo chiamo qua
         break;
