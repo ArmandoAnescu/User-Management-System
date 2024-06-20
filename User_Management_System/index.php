@@ -7,12 +7,18 @@ main page
 error_reporting(E_ALL);
 ini_set('display_errors',1);
 require_once 'functions.php';
+$page=$_SERVER['PHP_SELF'];
 $recordsPerPageOptions=getConfig('recordsPerPageOptions',[5,10,15,25]);
 $recordsPerPageDefault=getConfig('recordsPerPage',10);
 $recordsPerPage=(int)getParam('recordsPerPage',$recordsPerPageDefault);
 $search=getParam('search','');
 $search=trim($search);
 $search=strip_tags($search);
+//order by e order dir
+$orderDir=getParam('orderDir');
+$orderByColumns=getConfig('orderByColumns',[]); 
+$orderBy=getParam('orderBy');
+$orderBy=in_array($orderBy,$orderByColumns)?$orderBy:null;
 require_once 'views/top.php';//aggiungo la nav bar, le funzioni e la parte sotto
 require_once 'views/nav.php';
 ?>
@@ -23,14 +29,10 @@ require_once 'views/nav.php';
   <div class="container">
     <h1>User Management System</h1>
     <?php
-    $page=$_SERVER['PHP_SELF'];
     $action=getParam('action');//prendo parametri di ricerca
     switch($action){
       default:
-        $orderDir=getParam('orderDir');
-        $orderByColumns=getConfig('orderByColumns',[]); 
-        $orderBy=getParam('orderBy');
-        $orderBy=in_array($orderBy,$orderByColumns)?$orderBy:null;
+       
         $params=[];
         $params=[
           'orderBy'=>$orderBy,

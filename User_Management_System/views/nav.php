@@ -34,9 +34,11 @@ $newActive=$action==='insert' ?'active':'';//quando vado nella pagine new user c
           </li> -->
         </ul>
         <form class="g-3" method="GET"  role="search" id="searchForm">
+          <input type="hidden" name="orderBy" value="<?=$orderBy ?>">
+          <input type="hidden" name="orderDir" value="<?=$orderDir ?>">
           <div class="row">
-          <div class="col">
-          <label class="form-label text-bg-dark mt-2" for="recordsPerPage">Records</label>
+          <div class="col-3 mt-2">
+          <label class="form-label text-bg-dark " for="recordsPerPage">Records</label>
           </div>
           <div class="col">
           <select class="form-select"  name="recordsPerPage" id="recordsPerPage"
@@ -57,6 +59,9 @@ $newActive=$action==='insert' ?'active':'';//quando vado nella pagine new user c
           <div class="col">  
           <button class="btn btn-outline-success" type="submit">Search</button>
           </div>  
+          <div class="col-2">  
+          <button class="btn btn-outline-info" onclick="location.href= '<?=$page?>'" type="button">Reset</button>
+          </div> 
         </div>
         </form>
       </div>

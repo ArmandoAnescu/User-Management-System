@@ -102,7 +102,7 @@ function getUsers(array $params=[]){
     $limit=$params['recordsPerPage']??10;
     $orderBy=$params['orderBy']??'id';
     $orderDir=array_key_exists('orderDir',$params)? $params['orderDir']:'ASC';
-    $search=$params['search'];
+    $search=$params['search']??'';
     if($orderDir !== 'ASC' && $orderDir !=='DESC'){
         $orderDir='ASC';
     }
@@ -112,10 +112,10 @@ function getUsers(array $params=[]){
         if(is_numeric($search)){
             $sql.="(id=$search OR age=$search) ";
         }else{
-            $sql.="(fiscalcode like '%$search%' OR username='%$search%' OR email='%$search%')";
+            $sql.="(fiscalcode like '%$search%' OR username like '%$search%' OR  email like '%$search%')";
         }
     }
-    $sql.= "ORDER BY $orderBy $orderDir LIMIT 0,$limit";
+    $sql.= " ORDER BY $orderBy $orderDir LIMIT 0,$limit";
     $res=$conn->query($sql);
     if($res){
         while($row=$res->fetch_assoc()){//prendo tutti gli user
