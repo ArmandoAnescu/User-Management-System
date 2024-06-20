@@ -97,7 +97,7 @@ function insertRandUser($totale,mysqli $mysqli){
     }
 }
 function getUsers(array $params=[]){
-    $records=[];
+    $records=[];//prendo gli user
     $conn=$GLOBALS['mysqli'];
     $limit=getConfig('recordsPerPage');
     if($limit){
@@ -106,7 +106,7 @@ function getUsers(array $params=[]){
     $sql= 'SELECT *FROM users LIMIT '.$limit;
     $res=$conn->query($sql);
     if($res){
-        while($row=$res->fetch_assoc()){
+        while($row=$res->fetch_assoc()){//prendo tutti gli user
             $records[]=$row;
         }
     }
@@ -114,6 +114,6 @@ function getUsers(array $params=[]){
 }
 // insertRandUser(30,$mysqli);
 function getParam($param,$default){
-    return $_REQUEST[$param]?? $default;
+    return $_REQUEST[$param]?? $default;//se non ce niente gli do un par di default
 }
 

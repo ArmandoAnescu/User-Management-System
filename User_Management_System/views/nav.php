@@ -1,9 +1,10 @@
 <?php
-$currentUrl=$_SERVER['PHP_SELF'];
-$indexPage='index.php';
-$action=$_GET['action']?? '';
-$indexActive=!$action ?'active':'';
-$newActive=$action==='insert' ?'active':'';
+$currentUrl=$_SERVER['PHP_SELF'];//prendo l'url di adesso
+$indexPage='index.php';//identifico la home page
+$action=$_GET['action']?? '';//guardo cosa fa lo user
+$indexActive=!$action ?'active':'';//
+$newActive=$action==='insert' ?'active':'';//quando vado nella pagine new user cambia l'azione in insert cambianod l'icona di active a wuella di new user
+//altrimetni se vuota quindi falsa  non la illumina e illumina il tasto home
 ?>
 <style>
   i.fa-user-plus{
@@ -23,10 +24,10 @@ $newActive=$action==='insert' ?'active':'';
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link <?=$indexActive?>" aria-current="page" href="<?=$indexPage ?>">Home</a>
+            <a class="nav-link <?=$indexActive?>" aria-current="page" href="<?=$indexPage ?>">Home</a><!-- metto il link alla pagina home -->
           </li>
           <li class="nav-item">
-            <a class='nav-link <?= $newActive?> ' href='<?=$indexPage?>?action=insert'><i class="fa-solid fa-user-plus" ></i >New User</a>
+            <a class='nav-link <?= $newActive?> ' href='<?=$indexPage?>?action=insert'><i class="fa-solid fa-user-plus" ></i >New User</a><!-- metto il link alla pagina per inserire nuovi utenti -->
           </li>
           <!-- <li class="nav-item">
             <a class="nav-link disabled" aria-disabled="true">Disabled</a>

@@ -3,7 +3,7 @@
 FILE PER CONNESSIONE AL DB
 */
 $config=require 'config.php';
-$mysqli = new mysqli(
+$mysqli = new mysqli(//dichiaro il mio collegamento al DB
     $config['mysql_host'],
     $config['mysql_user'],
     $config['mysql_password'],
