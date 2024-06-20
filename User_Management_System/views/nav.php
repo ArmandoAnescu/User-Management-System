@@ -5,6 +5,11 @@ $action=$_GET['action']?? '';
 $indexActive=!$action ?'active':'';
 $newActive=$action==='insert' ?'active':'';
 ?>
+<style>
+  i.fa-user-plus{
+    margin-right: 5px;
+  }
+</style>
 <header>
   <!-- Fixed navbar -->
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -21,11 +26,11 @@ $newActive=$action==='insert' ?'active':'';
             <a class="nav-link <?=$indexActive?>" aria-current="page" href="<?=$indexPage ?>">Home</a>
           </li>
           <li class="nav-item">
-            <a class='nav-link <?= $newActive?> ' href='<?=$indexPage?>?action=insert'><i class="fa-solid fa-user-plus"></i>New User</a>
+            <a class='nav-link <?= $newActive?> ' href='<?=$indexPage?>?action=insert'><i class="fa-solid fa-user-plus" ></i >New User</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-          </li>
+          </li> -->
         </ul>
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

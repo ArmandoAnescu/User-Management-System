@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors',1);
+require_once 'functions.php';
 require_once 'views/top.php';
 require_once 'views/nav.php';
 ?>
@@ -8,6 +11,15 @@ require_once 'views/nav.php';
 <main class="flex-shrink-0">
   <div class="container">
     <h1>User Management System</h1>
+    <?php
+    $action=getParam('action',null);
+    switch($action){
+      default:
+        $user=getUsers();
+        require 'views/userList.php';
+        break;
+    }
+    ?>
   </div>
 </main>
 <?php

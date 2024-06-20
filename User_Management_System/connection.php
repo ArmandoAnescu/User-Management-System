@@ -2,7 +2,7 @@
 /*
 FILE PER CONNESSIONE AL DB
 */
-$config=require_once 'config.php';
+$config=require 'config.php';
 $mysqli = new mysqli(
     $config['mysql_host'],
     $config['mysql_user'],
@@ -12,7 +12,4 @@ $mysqli = new mysqli(
 unset($config);//per riutilizzarla in futuro
 if ($mysqli->connect_error) {//controllo se ci sono stati errori di connessione
     die(''. $mysqli->connect_error);
-}else {
-    echo 'Connesione riuscita'.'<br>';
-    var_dump($mysqli);
 }

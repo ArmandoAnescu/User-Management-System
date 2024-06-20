@@ -10,4 +10,5 @@ return[
     'mysql_user'=>'root',
     'mysql_password'=>'',
     'mysql_db'=>'corsophp',
+    'recordsPerPage'=>25
 ];
