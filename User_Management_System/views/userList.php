@@ -3,19 +3,30 @@
 File creazione tabella
 
 */
+$orderDirClass=$orderDir;
 $orderDir=$orderDir==='ASC'?'DESC':'ASC'; //per fare l'ordinamento crescente o decrescente
-
+$orderDirClass=$orderDir;
 
 ?>
+<style>
+.table thead th.ASC:after ,.table thead th.DESC:after   {
+    content: '↑';
+    padding: 3px;
+}
+
+.table thead th.DESC:after    {
+    content: '↓';
+}
+</style>
 <table class="table table-dark table-striped">
     <caption>Users List</caption>
     <thead>
         <tr>
-            <th><a href="?orderBy=id&orderDir=<?= $orderDir ?>">ID</a></th><!--creo i le colonne con i dati da mostrare-->
-            <th><a href="?orderBy=username&orderDir=<?= $orderDir ?>">NAME</a></th>
-            <th><a href="?orderBy=fiscalcode&orderDir=<?= $orderDir ?>">FISCAL CODE </a></th>
-            <th><a href="?orderBy=email&orderDir=<?= $orderDir ?>">EMAIL </a></th>
-            <th><a href="?orderBy=age&orderDir=<?= $orderDir ?>">AGE </a></th>
+            <th class="<?= $orderBy==='id'? $orderDirClass: '' ?>" ><a href="?orderBy=id&orderDir=<?= $orderDir ?>">ID</a></th><!--creo i le colonne con i dati da mostrare-->
+            <th class="<?= $orderBy==='username'? $orderDirClass: '' ?>"><a href="?orderBy=username&orderDir=<?= $orderDir ?>">NAME</a></th>
+            <th class="<?= $orderBy==='fiscalcode'? $orderDirClass: '' ?>"><a href="?orderBy=fiscalcode&orderDir=<?= $orderDir ?>">FISCAL CODE </a></th>
+            <th class="<?= $orderBy==='email'? $orderDirClass: '' ?>"><a href="?orderBy=email&orderDir=<?= $orderDir ?>">EMAIL </a></th>
+            <th class="<?= $orderBy==='age'? $orderDirClass: '' ?>"><a href="?orderBy=age&orderDir=<?= $orderDir ?>">AGE </a></th>
         </tr>
     </thead>
     <tbody>
