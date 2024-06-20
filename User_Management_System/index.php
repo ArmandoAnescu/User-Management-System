@@ -17,10 +17,18 @@ require_once 'views/nav.php';
   <div class="container">
     <h1>User Management System</h1>
     <?php
-    $action=getParam('action',null);//prendo parametri di ricerca
+    $page=$_SERVER['PHP_SELF'];
+    $action=getParam('action');//prendo parametri di ricerca
     switch($action){
       default:
-        $user=getUsers();//di default prende gli user 
+        $orderDir=getParam('orderDir','DESC');
+        $orderByColumns=getConfig('orderByColumns',[]); 
+        $orderBy=getParam('orderBy');
+        $orderBy=in_array($orderBy,$orderByColumns)?$orderBy:null;
+        $params=[];
+        $recordsPerPage=getConfig('recordsPerPage');
+        $params=['orderBy'=>$orderBy,'recordsPerPage'=>$recordsPerPage,'orderDir'=>$orderDir];
+        $user=getUsers($params);//di default prende gli user
         require 'views/userList.php';//richiedo il file che crea la tabella che in automatico ha user perchè lo chiamo qua
         break;
     }

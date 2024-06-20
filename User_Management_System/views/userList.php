@@ -1,17 +1,21 @@
+<?php
 /*
 File creazione tabella
 
 */
+$orderDir=$orderDir==='ASC'?'DESC':'ASC'; //per fare l'ordinamento crescente o decrescente
 
+
+?>
 <table class="table table-dark table-striped">
     <caption>Users List</caption>
     <thead>
         <tr>
-            <th>ID</th>//creo i le colonne con i dati da mostrare
-            <th>NAME</th>
-            <th>FISCAL CODE</th>
-            <th>EMAIL</th>
-            <th>AGE</th>
+            <th><a href="?orderBy=id&orderDir=<?= $orderDir ?>">ID</a></th><!--creo i le colonne con i dati da mostrare-->
+            <th><a href="?orderBy=username&orderDir=<?= $orderDir ?>">NAME</a></th>
+            <th><a href="?orderBy=fiscalcode&orderDir=<?= $orderDir ?>">FISCAL CODE </a></th>
+            <th><a href="?orderBy=email&orderDir=<?= $orderDir ?>">EMAIL </a></th>
+            <th><a href="?orderBy=age&orderDir=<?= $orderDir ?>">AGE </a></th>
         </tr>
     </thead>
     <tbody>

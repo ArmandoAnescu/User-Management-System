@@ -1,9 +1,9 @@
 <?php
 
 require_once 'connection.php';
-function getConfig($param){
+function getConfig($param,$default=''){
     $config = require 'config.php';
-    return array_key_exists($param,$config)?$config[$param]:null;
+    return $config[$param]??$default;
 }
 /*
 funzione per generare utenti random
@@ -99,11 +99,10 @@ function insertRandUser($totale,mysqli $mysqli){
 function getUsers(array $params=[]){
     $records=[];//prendo gli user
     $conn=$GLOBALS['mysqli'];
-    $limit=getConfig('recordsPerPage');
-    if($limit){
-        $limit=10;
-    }
-    $sql= 'SELECT *FROM users LIMIT '.$limit;
+    $limit=$params['recordsPerPage']??10;
+    $orderBy=$params['orderBy']??'id';
+    $orderDir=array_key_exists('orderDir',$params)? $params['orderDir']:'ASC';
+    $sql= "SELECT *FROM users ORDER BY $orderBy $orderDir LIMIT $limit";
     $res=$conn->query($sql);
     if($res){
         while($row=$res->fetch_assoc()){//prendo tutti gli user
@@ -113,7 +112,7 @@ function getUsers(array $params=[]){
     return $records;
 }
 // insertRandUser(30,$mysqli);
-function getParam($param,$default){
+function getParam($param,$default=''){
     return $_REQUEST[$param]?? $default;//se non ce niente gli do un par di default
 }
 

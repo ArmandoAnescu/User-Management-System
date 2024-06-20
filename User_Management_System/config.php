@@ -10,5 +10,6 @@ return[
     'mysql_user'=>'root',
     'mysql_password'=>'',//configuro il mio sql per prelevare/selezionare e aggiugnere dati
     'mysql_db'=>'corsophp',
-    'recordsPerPage'=>25
+    'recordsPerPage'=>25,
+    'orderByColumns'=>['id','username','fiscalcode','age','email']
 ];
