@@ -124,8 +124,29 @@ function getUsers(array $params=[]){
     }
     return $records;
 }
-// insertRandUser(30,$mysqli);
 function getParam($param,$default=''){
     return $_REQUEST[$param]?? $default;//se non ce niente gli do un par di default
 }
+function getTotalUsersCount(string $search='  '):int {
+ 
+    $conn=$GLOBALS['mysqli'];
+    $sql= "SELECT COUNT(*) as total FROM users";
+    
+    if($search){
+        $sql.=" WHERE ";
 
+        if(is_numeric($search)){
+            $sql.="(id=$search OR age=$search) ";
+        }else{
+            $search=$conn->real_escape_string($search);
+            $sql.="fiscalcode like '%$search%' OR username like '%$search%' OR  email like '%$search%'";
+        }
+    }
+    // $sql.= " ORDER BY $orderBy $orderDir LIMIT 0,$limit";
+    // var_dump($sql);
+    $res=$conn->query($sql);
+    if($res && $row=$res->fetch_assoc()){
+        return (int) $row['total'];
+    }
+    return 0;
+}

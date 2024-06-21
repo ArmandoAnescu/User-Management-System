@@ -21,6 +21,11 @@ $orderDir=$orderDir==='ASC'?'DESC':'ASC'; //per fare l'ordinamento crescente o d
     <caption>Users List</caption>
     <thead>
         <tr>
+            <th colspan="5" class="text-center text-bg-dark" >
+                <?= $totalRecords?> FOUND
+            </th>
+        </tr>
+        <tr><!-- passo l'order by e il dir così quando il modo di vedere tra asc e desc non si resetta -->
             <th class="<?= $orderBy==='id'? $orderDirClass: '' ?>" ><a href="<?=$page?>?search=<?=$search?>&recordsPerPage=<?=$recordsPerPage?>&orderBy=id&orderDir=<?= $orderDir ?>">ID</a></th><!--creo i le colonne con i dati da mostrare-->
             <th class="<?= $orderBy==='username'? $orderDirClass: '' ?>"><a href="<?=$page?>?search=<?=$search?>&recordsPerPage=<?=$recordsPerPage?>&orderDir<?= $orderDir?>&orderBy=username&orderDir=<?= $orderDir ?>">NAME</a></th>
             <th class="<?= $orderBy==='fiscalcode'? $orderDirClass: '' ?>"><a href="<?=$page?>?search=<?=$search?>&recordsPerPage=<?=$recordsPerPage?>&orderBy=fiscalcode&orderDir=<?= $orderDir ?>">FISCAL CODE </a></th>
@@ -41,6 +46,17 @@ $orderDir=$orderDir==='ASC'?'DESC':'ASC'; //per fare l'ordinamento crescente o d
                 </tr>
         <?php
             }
+            ?>
+            <tfoot>
+            <tr>
+                <td colspan="5">
+                    <?php
+                    require 'views/navigation.php';
+                    ?>
+                </td><!-- Se non ci sono user o i par della ricerca non trovano niente lo dico -->
+            </tr>
+            </tfoot>
+        <?php
         }else{ ?>
             <tr>
                 <td colspan="5">No records found</td><!-- Se non ci sono user o i par della ricerca non trovano niente lo dico -->

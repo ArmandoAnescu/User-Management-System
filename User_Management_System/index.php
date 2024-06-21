@@ -40,7 +40,8 @@ require_once 'views/nav.php';
           'orderDir'=>$orderDir,
           'search'=>$search
         ];
-        $user=getUsers($params);//di default prende gli user
+        $totalRecords=getTotalUsersCount($params['search']);
+        $user=$totalRecords?getUsers($params):[];//di default prende gli user
         require 'views/userList.php';//richiedo il file che crea la tabella che in automatico ha user perchè lo chiamo qua
         break;
     }

@@ -13,6 +13,6 @@ return[
     'recordsPerPage'=>25,
     'orderByColumns'=>['id','username','fiscalcode','age','email'],
     'recordsPerPageOptions'=>[
-        5,10,15,20,25,50,100,200
+        5,10,20,25,50,100,200
     ]
 ];
