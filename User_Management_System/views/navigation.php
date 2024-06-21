@@ -21,9 +21,13 @@ $previous = max(($currentPage - 1), 1);
 $html .=  '<li class="page-item' . $disabled . '">
         <a  href="' . $baseURL . ' &page=' . $previous . '" class="page-link">Previous</a>
     </li>';
-$startValue=$currentPage-$numLinks;
+
+$extra= $currentPage+$numLinks-$totalPages ;
+$extra=$extra>0?$extra:0;
+$startValue=$currentPage-$numLinks-$extra;
 $startValue=$startValue<1?1:$startValue; //se startValue è uguale di 1 lo setto a 1
 //altrimenti val negativo
+ //se extra è minore di 0 lo setto a 0
 
 for ($i = $startValue; $i <= $currentPage; $i++) {
     $activeClass = $i == $currentPage ? ' active' : '';
@@ -31,16 +35,12 @@ for ($i = $startValue; $i <= $currentPage; $i++) {
     $html .=  '<li class="page-item"><a class="page-link' . $activeClass . $disabled . '" href="' . $baseURL . '&page=' . $i . '">' . $i . '</a></li>';
 }
 
+$extra=($currentPage-$numLinks)<0?abs($currentPage-$numLinks):0;
 $startValue=$currentPage+1;
 $startValue=$startValue<1?1:$startValue; //se startValue è uguale di 1 lo setto a 1
 //altrimenti val negativo
 
-// $activeClass = $i == $currentPage ? ' active' : '';
-// $disabled = $i == $currentPage ? ' disabled' : '';
-// $html .=  '<li class="page-item"><a class="page-link' . $activeClass . $disabled . '" href="' . $baseURL . '&page=' . $currentPage . '">' . $currentPage . '</a></li>';
-
-
-$endValue=($currentPage+$numLinks);
+$endValue=$currentPage+$numLinks+$extra;
 $endValue=$endValue>$totalPages?$totalPages:$endValue;
 $endValue=min($endValue,$totalPages);
 for ($i = $startValue; $i <=$endValue; $i++) {
@@ -61,3 +61,6 @@ $html .= '</ul>
 </nav>';
 return $html;
 }
+// $activeClass = $i == $currentPage ? ' active' : '';
+// $disabled = $i == $currentPage ? ' disabled' : '';
+// $html .=  '<li class="page-item"><a class="page-link' . $activeClass . $disabled . '" href="' . $baseURL . '&page=' . $currentPage . '">' . $currentPage . '</a></li>';
