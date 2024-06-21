@@ -45,7 +45,7 @@ require_once 'views/nav.php';
         ];
         $totalRecords=getTotalUsersCount($params['search']);
         $user=$totalRecords?getUsers($params):[];//di default prende gli user
-        var_dump($_REQUEST);
+        // var_dump($_REQUEST);
         $orderDirClass = $orderDir;
         require 'views/userList.php';
         break;
