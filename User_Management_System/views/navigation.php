@@ -2,12 +2,14 @@
 /*
 barra di navigazione dei record
 */
+
 function createPagination(
     int $totalRecords,
     int $recordsPerPage,
     int $currentPage,
     string $baseURL
 ){
+$numLinks=getConfig('numLinkNavigator',5);
 $totalPages=(int)ceil($totalRecords/$recordsPerPage);//se mi esce 2,2 3,6 ecc va al num successivo
 //ceil è l'opposto di floor che arrotonda per difetto 5.5=5 3.9=3
 
@@ -19,14 +21,36 @@ $previous = max(($currentPage - 1), 1);
 $html .=  '<li class="page-item' . $disabled . '">
         <a  href="' . $baseURL . ' &page=' . $previous . '" class="page-link">Previous</a>
     </li>';
-for ($i = 1; $i <= $totalPages; $i++) {
+$startValue=$currentPage-$numLinks;
+$startValue=$startValue<1?1:$startValue; //se startValue è uguale di 1 lo setto a 1
+//altrimenti val negativo
+
+for ($i = $startValue; $i <= $currentPage; $i++) {
     $activeClass = $i == $currentPage ? ' active' : '';
     $disabled = $i == $currentPage ? ' disabled' : '';
     $html .=  '<li class="page-item"><a class="page-link' . $activeClass . $disabled . '" href="' . $baseURL . '&page=' . $i . '">' . $i . '</a></li>';
 }
 
+$startValue=$currentPage+1;
+$startValue=$startValue<1?1:$startValue; //se startValue è uguale di 1 lo setto a 1
+//altrimenti val negativo
+
+// $activeClass = $i == $currentPage ? ' active' : '';
+// $disabled = $i == $currentPage ? ' disabled' : '';
+// $html .=  '<li class="page-item"><a class="page-link' . $activeClass . $disabled . '" href="' . $baseURL . '&page=' . $currentPage . '">' . $currentPage . '</a></li>';
+
+
+$endValue=($currentPage+$numLinks);
+$endValue=$endValue>$totalPages?$totalPages:$endValue;
+$endValue=min($endValue,$totalPages);
+for ($i = $startValue; $i <=$endValue; $i++) {
+    $activeClass = $i == $currentPage ? ' active' : '';
+    $disabled = $i == $currentPage ? ' disabled' : '';
+    $html .=  '<li class="page-item"><a class="page-link' . $activeClass . $disabled . '" href="' . $baseURL . '&page=' . $i . '">' . $i . '</a></li>';
+}
 
 $disabled = $currentPage === $totalPages ? ' disabled' : '';
+
 
 $next = min(($currentPage + 1), $totalPages);
 $html .=
