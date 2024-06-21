@@ -20,12 +20,13 @@ $baseUrl = "$page?$params";
     content: '↓';
 }
 </style>
-<table class="table table-dark table-striped">
-    <caption>Users List</caption>
+<table class="table table-dark table-striped table-bordered">
+    <caption style="caption-side:top">Users List</caption>
     <thead>
         <tr>
             <th colspan="5" class="text-center text-bg-dark" >
-                <?= $totalRecords?> FOUND
+                <?= $totalRecords?> FOUND. Page <?= $pageI?> of <?= $totalRecords/ $recordsPerPage?>.
+
             </th>
         </tr>
         <tr><!-- passo l'order by e il dir così quando il modo di vedere tra asc e desc non si resetta -->

@@ -30,7 +30,7 @@ require_once 'views/nav.php';
 <!-- Begin page content -->
 <main class="flex-shrink-0">
   <div class="container">
-    <h1>User Management System</h1>
+    <h1 class="text-center p-2">User Management System</h1>
     <?php
     $action=getParam('action');//prendo parametri di ricerca
     switch($action){

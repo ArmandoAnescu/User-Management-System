@@ -14,7 +14,7 @@ $totalPages=(int)ceil($totalRecords/$recordsPerPage);//se mi esce 2,2 3,6 ecc va
 //ceil è l'opposto di floor che arrotonda per difetto 5.5=5 3.9=3
 
 
-$html = '<nav aria-label="Page navigation">';
+$html = '<nav class="navbar-dark bg-dark" aria-label="Page navigation">';
 $html .=  '<ul class="pagination mt-2 justify-content-center">';
 $disabled = $currentPage === 1 ? ' disabled' : '';
 $previous = max(($currentPage - 1), 1);
