@@ -98,11 +98,20 @@ function insertRandUser($totale,mysqli $mysqli){
 }
 function getUsers(array $params=[]){
     $records=[];//prendo gli user
+
     $conn=$GLOBALS['mysqli'];
+    
     $limit=$params['recordsPerPage']??10;
     $orderBy=$params['orderBy']??'id';
     $orderDir=array_key_exists('orderDir',$params)? $params['orderDir']:'ASC';
     $search=$params['search']??'';
+    $currentPage=$params['currentPage']??0;
+    if($currentPage!==1){
+        $start=($limit*($currentPage-1));
+    }else{
+        $start=0;
+    }
+    
     if($orderDir !== 'ASC' && $orderDir !=='DESC'){
         $orderDir='ASC';
     }
@@ -115,7 +124,7 @@ function getUsers(array $params=[]){
             $sql.="(fiscalcode like '%$search%' OR username like '%$search%' OR  email like '%$search%')";
         }
     }
-    $sql.= " ORDER BY $orderBy $orderDir LIMIT 0,$limit";
+    $sql.= " ORDER BY $orderBy $orderDir LIMIT $start,$limit";
     $res=$conn->query($sql);
     if($res){
         while($row=$res->fetch_assoc()){//prendo tutti gli user
@@ -125,7 +134,7 @@ function getUsers(array $params=[]){
     return $records;
 }
 function getParam($param,$default=''){
-    return $_REQUEST[$param]?? $default;//se non ce niente gli do un par di default
+    return $_REQUEST[$param]?? $default;//se non ce niente gli do un risultato di default
 }
 function getTotalUsersCount(string $search='  '):int {
  

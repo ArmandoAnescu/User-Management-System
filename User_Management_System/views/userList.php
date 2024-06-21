@@ -4,7 +4,10 @@ File creazione tabella
 
 */
 $orderDirClass=$orderDir;
+$params = "search=$search&recordsPerPage=$recordsPerPage&orderDir=$orderDir";
 $orderDir=$orderDir==='ASC'?'DESC':'ASC'; //per fare l'ordinamento crescente o decrescente
+$page=$_SERVER['PHP_SELF'];
+$baseUrl = "$page?$params";
 ?>
 <style>
 .table thead th.ASC:after ,.table thead th.DESC:after   {
@@ -26,11 +29,11 @@ $orderDir=$orderDir==='ASC'?'DESC':'ASC'; //per fare l'ordinamento crescente o d
             </th>
         </tr>
         <tr><!-- passo l'order by e il dir così quando il modo di vedere tra asc e desc non si resetta -->
-            <th class="<?= $orderBy==='id'? $orderDirClass: '' ?>" ><a href="<?=$page?>?search=<?=$search?>&recordsPerPage=<?=$recordsPerPage?>&orderBy=id&orderDir=<?= $orderDir ?>">ID</a></th><!--creo i le colonne con i dati da mostrare-->
-            <th class="<?= $orderBy==='username'? $orderDirClass: '' ?>"><a href="<?=$page?>?search=<?=$search?>&recordsPerPage=<?=$recordsPerPage?>&orderDir<?= $orderDir?>&orderBy=username&orderDir=<?= $orderDir ?>">NAME</a></th>
-            <th class="<?= $orderBy==='fiscalcode'? $orderDirClass: '' ?>"><a href="<?=$page?>?search=<?=$search?>&recordsPerPage=<?=$recordsPerPage?>&orderBy=fiscalcode&orderDir=<?= $orderDir ?>">FISCAL CODE </a></th>
-            <th class="<?= $orderBy==='email'? $orderDirClass: '' ?>"><a href="<?=$page?>?search=<?=$search?>&recordsPerPage=<?=$recordsPerPage?>&orderBy=email&orderDir=<?= $orderDir ?>">EMAIL </a></th>
-            <th class="<?= $orderBy==='age'? $orderDirClass: '' ?>"><a href="<?=$page?>?search=<?=$search?>&recordsPerPage=<?=$recordsPerPage?>&orderBy=age&orderDir=<?= $orderDir ?>">AGE </a></th>
+            <th class="<?= $orderBy==='id'? $orderDirClass: '' ?>" ><a href="<?=$page?>?search=<?=$search?>&recordsPerPage=<?=$recordsPerPage?>&orderBy=id&orderDir=<?= $orderDir ?>&page=<?=$pageI?>">ID</a></th><!--creo i le colonne con i dati da mostrare-->
+            <th class="<?= $orderBy==='username'? $orderDirClass: '' ?>"><a href="<?=$page?>?search=<?=$search?>&recordsPerPage=<?=$recordsPerPage?>&orderDir<?= $orderDir?>&orderBy=username&orderDir=<?= $orderDir ?>&page=<?=$pageI?>">NAME</a></th>
+            <th class="<?= $orderBy==='fiscalcode'? $orderDirClass: '' ?>"><a href="<?=$page?>?search=<?=$search?>&recordsPerPage=<?=$recordsPerPage?>&orderBy=fiscalcode&orderDir=<?= $orderDir ?>&page=<?=$pageI?>">FISCAL CODE </a></th>
+            <th class="<?= $orderBy==='email'? $orderDirClass: '' ?>"><a href="<?=$page?>?search=<?=$search?>&recordsPerPage=<?=$recordsPerPage?>&orderBy=email&orderDir=<?= $orderDir ?>&page=<?=$pageI?>">EMAIL </a></th>
+            <th class="<?= $orderBy==='age'? $orderDirClass: '' ?>"><a href="<?=$page?>?search=<?=$search?>&recordsPerPage=<?=$recordsPerPage?>&orderBy=age&orderDir=<?= $orderDir ?>&page=<?=$pageI?>">AGE </a></th>
         </tr>
     </thead>
     <tbody>
@@ -52,6 +55,7 @@ $orderDir=$orderDir==='ASC'?'DESC':'ASC'; //per fare l'ordinamento crescente o d
                 <td colspan="5">
                     <?php
                     require 'views/navigation.php';
+                    echo createPagination($totalRecords,$recordsPerPage,$pageI,$baseUrl);
                     ?>
                 </td><!-- Se non ci sono user o i par della ricerca non trovano niente lo dico -->
             </tr>
