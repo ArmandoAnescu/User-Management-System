@@ -4,12 +4,13 @@ main page
 */
 
 <?php
+session_start();
 error_reporting(E_ALL);
 ini_set('display_errors',1);
 require_once 'functions.php';
 
 $page=$_SERVER['PHP_SELF'];
-
+$updateUrl='controller/updateRecord.php';
 $recordsPerPageOptions=getConfig('recordsPerPageOptions',[5,10,25]);
 $recordsPerPageDefault=getConfig('recordsPerPage',10);
 $recordsPerPage=(int)getParam('recordsPerPage',$recordsPerPageDefault);
@@ -21,7 +22,6 @@ $orderDir=getParam('orderDir');
 $orderByColumns=getConfig('orderByColumns',[]); 
 $orderBy=getParam('orderBy');
 $orderBy=in_array($orderBy,$orderByColumns)?$orderBy:null;
-
 require_once 'views/top.php';//aggiungo la nav bar, le funzioni e la parte sotto
 require_once 'views/nav.php';
 ?>
@@ -31,6 +31,16 @@ require_once 'views/nav.php';
 <main class="flex-shrink-0">
   <div class="container">
     <h1 class="text-center p-2">User Management System</h1>
+    <?php
+    if(!empty($_SESSION['$message'])){
+      if($_SESSION['$message']==='cancellazione riuscita'){
+        echo '<div class="alert alert-success">'.$_SESSION['$message'].'</div>';
+      }else{
+        echo '<div class="alert alert-danger">'.$_SESSION['$message'].'</div>';
+      }
+
+    }
+    ?>
     <?php
     $action=getParam('action');//prendo parametri di ricerca
     switch($action){

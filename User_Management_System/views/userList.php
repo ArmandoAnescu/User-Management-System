@@ -24,8 +24,8 @@ $baseUrl = "$page?$params";
     <caption style="caption-side:top">Users List</caption>
     <thead>
         <tr>
-            <th colspan="5" class="text-center text-bg-dark" >
-                <?= $totalRecords?> FOUND. Page <?= $pageI?> of <?= $totalRecords/ $recordsPerPage?>.
+            <th colspan="6" class="text-center text-bg-dark" >
+                <?= $totalRecords?> FOUND. Page <?= $pageI?> of <?= ceil($totalRecords/ $recordsPerPage)?>.
 
             </th>
         </tr>
@@ -35,6 +35,7 @@ $baseUrl = "$page?$params";
             <th class="<?= $orderBy==='fiscalcode'? $orderDirClass: '' ?>"><a href="<?=$page?>?search=<?=$search?>&recordsPerPage=<?=$recordsPerPage?>&orderBy=fiscalcode&orderDir=<?= $orderDir ?>&page=<?=$pageI?>">FISCAL CODE </a></th>
             <th class="<?= $orderBy==='email'? $orderDirClass: '' ?>"><a href="<?=$page?>?search=<?=$search?>&recordsPerPage=<?=$recordsPerPage?>&orderBy=email&orderDir=<?= $orderDir ?>&page=<?=$pageI?>">EMAIL </a></th>
             <th class="<?= $orderBy==='age'? $orderDirClass: '' ?>"><a href="<?=$page?>?search=<?=$search?>&recordsPerPage=<?=$recordsPerPage?>&orderBy=age&orderDir=<?= $orderDir ?>&page=<?=$pageI?>">AGE </a></th>
+            <th>&nbsp;</th>
         </tr>
     </thead>
     <tbody>
@@ -47,13 +48,30 @@ $baseUrl = "$page?$params";
                     <td><?= $utente['fiscalcode'];?></td>
                     <td><a href="mailto:<?= $utente['email']?>"><?= $utente['email'];?></a></td><!-- aggiungo anche il link per scrivere una email -->
                     <td><?= $utente['age']; ?></td>
+                    <td>
+                        <div class="row">
+                                <div class="col-4">
+                                    <a class="btn btn-success" href="<?=$updateUrl?>?page=<?=$pageI?>&id=<?=$utente['id']?>&action=update&<?=$params?>">
+                                            <i class="fa fa-pen"></i>
+                                            UPDATE
+                                    </a>
+                                </div>
+                                <div class="col-4">
+                                    <a onclick="return confirm('Vuoi eliminare lo user?')" class="btn btn-danger" href="<?=$updateUrl?>?page=<?=$pageI?>&id=<?=$utente['id']?>&action=delete&<?=$params?>">
+                                            <i class="fa fa-trash"></i>
+                                            DELETE
+                                    </a>
+                                </div>
+                             
+                        </div>
+                    </td>
                 </tr>
         <?php
             }
             ?>
             <tfoot>
             <tr>
-                <td colspan="5">
+                <td colspan="6">
                     <?php
                     require 'views/navigation.php';
                     echo createPagination($totalRecords,$recordsPerPage,$pageI,$baseUrl);
@@ -64,7 +82,7 @@ $baseUrl = "$page?$params";
         <?php
         }else{ ?>
             <tr>
-                <td colspan="5">No records found</td><!-- Se non ci sono user o i par della ricerca non trovano niente lo dico -->
+                <td colspan="6">No records found</td><!-- Se non ci sono user o i par della ricerca non trovano niente lo dico -->
             </tr>
             <?php
         }
