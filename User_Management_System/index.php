@@ -32,34 +32,15 @@ require_once 'views/nav.php';
   <div class="container">
     <h1 class="text-center p-2">User Management System</h1>
     <?php
-    if(!empty($_SESSION['$message'])){
-      if($_SESSION['$message']==='cancellazione riuscita'){
-        echo '<div class="alert alert-success">'.$_SESSION['$message'].'</div>';
-      }else{
-        echo '<div class="alert alert-danger">'.$_SESSION['$message'].'</div>';
-      }
+    if(!empty($_SESSION['message'])){
+      $message=$_SESSION['message'];
+      $alertType=$_SESSION['success']?'success':'danger';
+      require 'views/message.php';
+      unset($_SESSION['message'],$_SESSION['success']);
+      // session_abort();
+    }
+    require_once 'controller/displayUser.php';
 
-    }
-    ?>
-    <?php
-    $action=getParam('action');//prendo parametri di ricerca
-    switch($action){
-      default:
-      $pageI = getParam('page', 1);
-        $params=[
-          'orderBy'=>$orderBy,
-          'recordsPerPage'=>$recordsPerPage,
-          'orderDir'=>$orderDir,
-          'search'=>$search,
-          'currentPage'=>$pageI
-        ];
-        $totalRecords=getTotalUsersCount($params['search']);
-        $user=$totalRecords?getUsers($params):[];//di default prende gli user
-        // var_dump($_REQUEST);
-        $orderDirClass = $orderDir;
-        require 'views/userList.php';
-        break;
-    }
     ?>
   </div>
 </main>

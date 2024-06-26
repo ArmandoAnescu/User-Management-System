@@ -3,3 +3,6 @@
     <span class="text-body-secondary">@copyright <?=date('d/m/Y')?>.</span>
   </div>
 </footer>
+<script>
+  $('#message').fadeOut(4000);
+</script>
