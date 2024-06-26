@@ -1,5 +1,6 @@
 <?php
 require_once 'headerInclude.php';
+require_once 'model/user.php';
 require_once 'functions.php';
 session_start();
 error_reporting(E_ALL);
