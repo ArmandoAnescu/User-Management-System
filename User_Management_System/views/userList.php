@@ -57,7 +57,7 @@ $baseUrl = "$page?$params";
                                     </a>
                                 </div>
                                 <div class="col-4">
-                                    <a onclick="return confirm('Vuoi eliminare lo user?')" class="btn btn-danger" href="<?=$updateUrl?>?page=<?=$pageI?>&id=<?=$utente['id']?>&action=delete&<?=$params?>">
+                                    <a onclick="return confirm('Vuoi eliminare lo user?')" class="btn btn-danger" href="<?=$deleteUrl?>?page=<?=$pageI?>&id=<?=$utente['id']?>&action=delete&<?=$params?>">
                                             <i class="fa fa-trash"></i>
                                             DELETE
                                     </a>

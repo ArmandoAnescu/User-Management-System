@@ -1,4 +1,5 @@
 <?php
+
     $action=getParam('action');//prendo parametri di ricerca
     switch($action){
       default:

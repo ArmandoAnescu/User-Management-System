@@ -1,6 +1,6 @@
 <?php
 $currentUrl=$_SERVER['PHP_SELF'];//prendo l'url di adesso
-$indexPage='index.php';//identifico la home page
+$indexPage='../index.php';//identifico la home page
 $action=$_GET['action']?? '';//guardo cosa fa lo user
 $indexActive=!$action ?'active':'';//
 $newActive=$action==='insert' ?'active':'';//quando vado nella pagine new user cambia l'azione in insert cambianod l'icona di active a wuella di new user
