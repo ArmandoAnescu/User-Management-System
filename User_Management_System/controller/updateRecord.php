@@ -18,14 +18,18 @@ switch($action){
         header('LOCATION:../index.php?'.$queryString);
         break;
     case 'save':
-
+        $data=$_POST;
+        $res=saveUser($data);
+        $message=$res?'Aggiunto nuovo user':'Aggiunta nuovo user non riuscita';
+        $_SESSION['message']=$message;
+        $_SESSION['success']=$res;
+        header('LOCATION:../index.php?'.$queryString);
         break;
-        
     case 'store':
         $data=$_POST;
         $id=getParam('id',0);
         $res=storeUser($id,$data);
-        $message=$res?'Aggiornamento riuscito':'Aggiornamento non riuscito';
+        $message=$res?'Aggiornamento user n'.$id.' riuscito':'Aggiornamento user n'.$id.' non riuscito';
         $_SESSION['message']=$message;
         $_SESSION['success']=$res;
         header('LOCATION:../index.php?'.$queryString);

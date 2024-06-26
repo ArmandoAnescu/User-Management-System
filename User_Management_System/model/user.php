@@ -42,3 +42,23 @@ function storeUser(int $id,array $data){
     }
     return $result;
 }
+function saveUser(array $data){
+    /**
+       * @var $conn mysqli
+       */
+      $conn=$GLOBALS['mysqli'];
+      $result=0;
+      $username=$conn->escape_string($data['username']);
+      $email=$conn->escape_string($data['email']);
+      $fiscalcode=$conn->escape_string($data['fiscalcode']);
+      $age=(int)$data['age'];
+      $sql="INSERT INTO users (username,email,fiscalcode,age) VALUES ('$username','$email','$fiscalcode',$age)";
+      $res=$conn->query($sql);
+      if($res )
+      {
+         $result= $conn->affected_rows;
+      }else{
+         $result=-1;
+      }
+      return $result;
+  }
