@@ -37,7 +37,9 @@ function storeUser(int $id,array $data){
     $email=$conn->escape_string($data['email']);
     $age=$conn->escape_string($data['age']);
     $fiscalcode=$conn->escape_string($data['fiscalcode']);
-    $sql="UPDATE users SET username='$username',email='$email',fiscalcode='$fiscalcode',age='$age' WHERE id=$id";
+    $avatar=$conn->escape_string($data['avatar']);
+    $sql="UPDATE users SET username='$username',email='$email',fiscalcode='$fiscalcode',age='$age',avatar='$avatar' WHERE id=$id";
+    var_dump($sql);
     $res=$conn->query($sql);
     if($res )
     {

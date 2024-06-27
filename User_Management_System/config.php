@@ -14,6 +14,7 @@ if(stristr($maxUpLoad,'G'))//controlla che la conf sia o in Giga o Mega e da li 
 }else
 {   
     $maxUpLoad=intval($maxUpLoad)*$mega;
+
 }
 return[
     'mysql_host'=>'localhost',
@@ -26,6 +27,7 @@ return[
         5,10,20,25,50,100,200
     ],
     'numLinkNavigator'=>5,
-    'maxFileUpload'=>$maxUpLoad
+    'maxFileUpload'=>$maxUpLoad,
+    'avatarDir'=>'C:\Users\stage\Documents\JS\SuperChess-main\PHP-EX\User_Management_System'.'/avatar/'
 ];
-const AVATAR_DIR='avatar/';
+

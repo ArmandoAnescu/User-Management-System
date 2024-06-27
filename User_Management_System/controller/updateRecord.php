@@ -34,8 +34,16 @@ switch($action){
     case 'store':
         $data=$_POST;
         $id=getParam('id',0);
+        $resCopy=copyAvatar($id);
+        // var_dump($resCopy);die;
+        if($resCopy['success']){
+            $data['avatar']=$resCopy['filename'];
+        }
         $res=storeUser($id,$data);
         $message=$res['success']?'Aggiornamento user n'.$id.' riuscito':'Aggiornamento user n'.$id.' non riuscito : '.$res['error'];
+        if(!$resCopy['success']){
+            $message.=' Errore nel caricamento dell\'avatar';
+        }
         $_SESSION['message']=$message;
         $_SESSION['success']=$res;
         header('LOCATION:../index.php?'.$queryString);

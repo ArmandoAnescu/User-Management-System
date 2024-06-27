@@ -164,7 +164,8 @@ function copyAvatar(int $userId)
 {
     $result=[
         'success'=>false,
-        'message'=>'PROBLEM IN SAVING IMAGE'
+        'message'=>'PROBLEM IN SAVING IMAGE',
+        'filename'=>''
     ];
     if(empty($_FILES)){
         $result['message']='NO FILE UPLOADED';
@@ -176,9 +177,9 @@ function copyAvatar(int $userId)
     }
     $finfo=finfo_open(FILEINFO_MIME);
     $info=finfo_file($finfo,$FILE['tmp_name']);
-    if(stristr($info,'image/jpeg'))
+    if(stristr($info,'image/jpg'))
     {
-        $result['message']='FILE IS NOT A JPEG IMAGE';
+        $result['message']='FILE IS NOT A JPG IMAGE';
         return $result;
     }
     $maxSize=getConfig('maxFileUpload',0);
@@ -187,5 +188,14 @@ function copyAvatar(int $userId)
         $result['message']='THE FILE UPLOADED EXCEEDS MAXIMUM SIZE '.$maxSize;
         return $result;
     }
-    move_uploaded_file($FILE['tmp_name'],AVATAR_DIR);
+    $filename=$userId.'_'.str_replace('.','',microtime(true)).'.jpg';
+    $avatarDir=getConfig('avatarDir');
+    // echo $avatarDir.$filename;die;
+    if(!move_uploaded_file($FILE['tmp_name'],$avatarDir.$filename)){
+        $result['message']='PROBLEM IN MOVING FILE TO DESTINATION';
+        return $result;
+    }
+    $result['filename']=$filename;
+    $result['success']=true;
+    return $result;
 }
