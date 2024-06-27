@@ -4,7 +4,7 @@
 </head>
 
 
-<form id="updateForm" action="controller/updateRecord.php?<?=$defaultParams?>" method="post">
+<form enctype="multipart/form-data" id="updateForm" action="controller/updateRecord.php?<?=$defaultParams?>" method="post">
     <div class="form-group row">
         <input required type="hidden"  value="<?=$user['id']?>"  name="id">
         <input required type="hidden"  value="<?=$user['id']?'store':'save' ?>"  name="action"placeholder="User name">
@@ -32,6 +32,14 @@
         <label for="age" class="col-sm-2 col-form-label">Age</label>
         <div class="col-sm-10">
             <input required type="number" min="0" max="100"class="form-control form-control-lg"value="<?=$user['age']?>" id="age" name="age" placeholder="Age">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="avatar" class="col-sm-2 col-form-label">Avatar</label>
+        <div class="col-sm-10">
+            <input type="hidden" name="MAX_FILE_SIZE" value="300000"/>
+            <input required type="file" min="0" max="100"class="form-control form-control-lg" name="avatar" accept="image/jpeg">
         </div>
     </div>
 

@@ -159,3 +159,33 @@ function getTotalUsersCount(string $search='  '):int {
     }
     return 0;
 }
+
+function copyAvatar(int $userId)
+{
+    $result=[
+        'success'=>false,
+        'message'=>'PROBLEM IN SAVING IMAGE'
+    ];
+    if(empty($_FILES)){
+        $result['message']='NO FILE UPLOADED';
+        return $result;
+    }
+    $FILE=$_FILES['avatar'];
+    if(!is_uploaded_file($FILE['tmp_name'])){
+        $result['message']='FILE NOT UPLOADED VIA HTTP POST';
+    }
+    $finfo=finfo_open(FILEINFO_MIME);
+    $info=finfo_file($finfo,$FILE['tmp_name']);
+    if(stristr($info,'image/jpeg'))
+    {
+        $result['message']='FILE IS NOT A JPEG IMAGE';
+        return $result;
+    }
+    $maxSize=getConfig('maxFileUpload',0);
+    if($FILE['size']>$maxSize)
+    {
+        $result['message']='THE FILE UPLOADED EXCEEDS MAXIMUM SIZE '.$maxSize;
+        return $result;
+    }
+    move_uploaded_file($FILE['tmp_name'],AVATAR_DIR);
+}

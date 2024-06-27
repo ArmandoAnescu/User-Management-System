@@ -12,6 +12,7 @@ switch($action){
     case 'delete':
         $id=getParam('id',0);
         $res=deleteUser($id);
+        copyAvatar($id);
         $message=$res?'cancellazione riuscita':'cancellazione non riuscita';
         $_SESSION['message']=$message;
         $_SESSION['success']=$res;
