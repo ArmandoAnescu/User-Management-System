@@ -29,7 +29,6 @@ require_once 'headerInclude.php';
 // require_once 'views/top.php';//aggiungo la nav bar, le funzioni e la parte sotto
 // require_once 'views/nav.php';
 ?> 
-
 <!-- Begin page content -->
 <main class="flex-shrink-0">
   <div class="container">
