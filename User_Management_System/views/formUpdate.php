@@ -1,8 +1,10 @@
 
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
 
 
-<form id="updateForm" action="controller/updateRecord.php" method="post">
+<form id="updateForm" action="controller/updateRecord.php?<?=$defaultParams?>" method="post">
     <div class="form-group row">
         <input required type="hidden"  value="<?=$user['id']?>"  name="id">
         <input required type="hidden"  value="<?=$user['id']?'store':'save' ?>"  name="action"placeholder="User name">
