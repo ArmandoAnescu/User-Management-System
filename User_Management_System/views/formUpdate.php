@@ -35,6 +35,16 @@
         </div>
     </div>
 
+    <div class="form-group">
+        <?php
+        $avatarDir=getConfig('webAvatarDir');
+        $thumbWidth=getConfig('thumbnail_width',200);
+        $avatarImg=file_exists($avatarDir.$user['avatar'])? $avatarDir.$user['avatar']: $avatarDir.'default.jpg';
+
+        ?>
+        <img src="<?=$avatarImg?>" alt="Avatar" width="<?=$thumbWidth?> height="<?=$thumbWidth?>">
+    </div>
+
     <div class="form-group row">
         <label for="avatar" class="col-sm-2 col-form-label">Avatar</label>
         <div class="col-sm-10">
