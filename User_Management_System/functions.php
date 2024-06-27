@@ -195,6 +195,16 @@ function copyAvatar(int $userId)
         $result['message']='PROBLEM IN MOVING FILE TO DESTINATION';
         return $result;
     }
+    $newImg=imagecreatefromjpeg($avatarDir.$filename);
+    if(!$newImg){
+        $result['message']='COULD NOT CREATE THUMBNAIL';
+        return $result;
+    }
+    $thumbNailImg=imagescale($newImg,getConfig('thumbnail_width'),getConfig('thumbnail_height'));
+    if($thumbNailImg)
+    {
+        imagejpeg($thumbNailImg,$avatarDir.'thumb_'.$filename);
+    }
     $result['filename']=$filename;
     $result['success']=true;
     return $result;
