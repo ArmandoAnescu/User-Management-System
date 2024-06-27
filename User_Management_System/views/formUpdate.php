@@ -1,7 +1,8 @@
+
 <link rel="stylesheet" href="css/bootstrap.min.css">
 
 
-<form action="controller/updateRecord.php" method="post">
+<form id="updateForm" action="controller/updateRecord.php" method="post">
     <div class="form-group row">
         <input required type="hidden"  value="<?=$user['id']?>"  name="id">
         <input required type="hidden"  value="<?=$user['id']?'store':'save' ?>"  name="action"placeholder="User name">
@@ -34,17 +35,22 @@
 
     <div class="form-group row">
        <div class="col-sm-2"></div>
-        <div class="col-auto">
-        <button onclick="return confirm('Vuoi eliminare lo user?')" class="btn btn-danger">
-        <i class="fa fa-trash"></i>
-        DELETE
-        </button>
-        </div>
+       <?php if($user['id']){?>
 
         <div class="col-auto">
+        <a href="<?=$deleteUrl?>?id=<?=$user['id']?>&action=delete" class="btn btn-danger"> 
+        <i class="fa fa-trash"></i>
+        DELETE
+        </a>
+        </div>
+        <?php  } ?>
+
+        <div class="<?=$user['id']?'col-sm-5':'col-sm-12'?> text-center">
+
         <button class="btn btn-success">
             <i class="fa fa-pen"></i>
-            UPDATE
+            <?php echo $action==='insert'?'SAVE':'UPDATE' ?>
+
         </button>
         </div>
     </div>

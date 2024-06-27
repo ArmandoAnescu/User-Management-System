@@ -26,8 +26,13 @@ function storeUser(int $id,array $data){
   /**
      * @var $conn mysqli
      */
+
+    $result=[
+      'success'=>1,
+      'affectedRows'=>0,
+      'error'=>''
+    ];
     $conn=$GLOBALS['mysqli'];
-    $result=0;
     $username=$conn->escape_string($data['username']);
     $email=$conn->escape_string($data['email']);
     $age=$conn->escape_string($data['age']);
@@ -36,9 +41,10 @@ function storeUser(int $id,array $data){
     $res=$conn->query($sql);
     if($res )
     {
-       $result= $conn->affected_rows;
+       $result['affectedRows']= $conn->affected_rows;
     }else{
-       $result=-1;
+       $result['success']=0;
+       $result['error']=$conn->error;
     }
     return $result;
 }

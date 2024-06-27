@@ -20,7 +20,12 @@ switch($action){
     case 'save':
         $data=$_POST;
         $res=saveUser($data);
-        $message=$res?'Aggiunto nuovo user':'Aggiunta nuovo user non riuscita';
+        if($res){
+            $message='Aggiunto nuovo user '.$data['username'];
+        }else{
+            $message='Impossibile aggiungere nuovo utente '.$data['username'];
+        }
+        // $message=$res?'Aggiunto nuovo user':'Impossibile aggiungere nuovo utente';//non so perchè non si poteva fare così ma l'istruttore ha voluto così
         $_SESSION['message']=$message;
         $_SESSION['success']=$res;
         header('LOCATION:../index.php?'.$queryString);
@@ -29,7 +34,7 @@ switch($action){
         $data=$_POST;
         $id=getParam('id',0);
         $res=storeUser($id,$data);
-        $message=$res?'Aggiornamento user n'.$id.' riuscito':'Aggiornamento user n'.$id.' non riuscito';
+        $message=$res['success']?'Aggiornamento user n'.$id.' riuscito':'Aggiornamento user n'.$id.' non riuscito : '.$res['error'];
         $_SESSION['message']=$message;
         $_SESSION['success']=$res;
         header('LOCATION:../index.php?'.$queryString);
