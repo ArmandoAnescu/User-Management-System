@@ -17,7 +17,7 @@ $search=getParam('search','');
 $search=trim($search);
 $search=strip_tags($search);
 //order by e order dir
-$orderDir=getParam('orderDir');
+$orderDir=getParam('orderDir','DESC');
 $orderByColumns=getConfig('orderByColumns',[]); 
 $orderBy=getParam('orderBy');
 $orderBy=in_array($orderBy,$orderByColumns)?$orderBy:null;
