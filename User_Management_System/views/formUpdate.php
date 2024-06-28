@@ -52,7 +52,7 @@
         <label for="avatar" class="col-sm-2 col-form-label">Avatar</label>
         <div class="col-sm-10">
             <input type="hidden" name="MAX_FILE_SIZE" value="300000"/>
-            <input required type="file" min="0" max="100"class="form-control form-control-lg" name="avatar" accept="image/jpeg">
+            <input required type="file" min="0"  onchange="previewFile" max="100"class="form-control form-control-lg" name="avatar" accept="image/jpeg">
         </div>
     </div>
 

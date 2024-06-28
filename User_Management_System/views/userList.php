@@ -61,12 +61,10 @@ $baseUrl = "$page?$params";
                     <td><?= $utente['age']; ?></td>
                     <td>
                         <div class="row">
-                                <div class="col-sm-7">
+                                <div class="col-sm-6">
                                     <a class="btn btn-success" href="<?=$updateUrl?>?page=<?=$pageI?>&id=<?=$utente['id']?>&action=update&<?=$params?>&orderBy=<?=$orderBy?>">
-
                                             <i class="fa fa-pen"></i>
-                                            UPDATE
-                                    </a>
+                                            UPDATE</a>
                                 </div>
                                 <div class="col-sm-6">
                                     <a onclick="return confirm('Vuoi eliminare lo user?')" class="btn btn-danger" href="<?=$deleteUrl?>?page=<?=$pageI?>&id=<?=$utente['id']?>&action=delete&<?=$params?>">

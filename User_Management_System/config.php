@@ -31,6 +31,6 @@ return[
     'avatarDir'=>'C:\Users\stage\Documents\JS\SuperChess-main\PHP-EX\User_Management_System'.'/avatar/',
     'webAvatarDir'=>'avatar/',
     'thumbnail_width'=>200,
-    'thumbnail_height'=>120
+    'thumbnail_height'=>200
 ];
 

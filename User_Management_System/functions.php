@@ -209,3 +209,21 @@ function copyAvatar(int $userId)
     $result['success']=true;
     return $result;
 }
+
+function removeOldAvatar(int $id){
+    $userData=getUser($id);
+    if(!$userData|| !$userData['avatar']){
+        return;
+    }
+    $avatarDir=getConfig('avatarDir');
+    $fileName=$avatarDir.$userData['avatar'];
+    $thumbNailName=$avatarDir.'thumb_'.$userData['avatar'];
+    if(file_exists($fileName))
+    {
+        unlink($fileName);//elimina il file
+    }
+    if(file_exists($thumbNailName))
+    {
+        unlink($thumbNailName);
+    }
+}

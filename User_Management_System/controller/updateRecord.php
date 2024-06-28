@@ -37,12 +37,13 @@ switch($action){
         $resCopy=copyAvatar($id);
         // var_dump($resCopy);die;
         if($resCopy['success']){
+            removeOldAvatar($id);
             $data['avatar']=$resCopy['filename'];
         }
         $res=storeUser($id,$data);
-        $message=$res['success']?'Aggiornamento user n'.$id.' riuscito':'Aggiornamento user n'.$id.' non riuscito : '.$res['error'];
+        $message=$res['success']?'Aggiornamento user n '.$id.' riuscito':'Aggiornamento user n '.$id.' non riuscito : '.$res['error'];
         if(!$resCopy['success']){
-            $message.=' Errore nel caricamento dell\'avatar';
+            $message.=$resCopy['message'];
         }
         $_SESSION['message']=$message;
         $_SESSION['success']=$res;
