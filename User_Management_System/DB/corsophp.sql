@@ -4,7 +4,7 @@
 -- S.O. server:                  Win64
 -- HeidiSQL Versione:            12.1.0.6537
 -- --------------------------------------------------------
-
+-- --
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!50503 SET NAMES utf8mb4 */;
@@ -28,13 +28,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `u_fiscalcode` (`fiscalcode`),
   KEY `i_email` (`email`),
   KEY `i_username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=216 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=217 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 -- Dump dei dati della tabella corsophp.users: ~189 rows (circa)
 INSERT INTO `users` (`id`, `username`, `email`, `fiscalcode`, `age`, `avatar`, `password`, `roletype`) VALUES
-	(2, 'Leopoldo Morandi', 'leopoldo.morandi70@infinitevoid.jap', 'AKCLDHRQLXRCJGLG', 44, '2_17195611731202.jpg', '', 'user'),
-	(4, 'Enrico Formaggio', 'enrico.formaggio12@hotmail.it', 'NQOGWZXFLHYSUGSL', 27, '4_17195626173488.jpg', '', 'user'),
-	(5, 'Irene Sprocati', 'irene.sprocati66@iisviolamarchesini.edu.it', 'LEFTVZVKRGDVMEVV', 41, NULL, '', 'user'),
+	(2, 'Leopoldo Morandi', 'leopoldo.morandi70@infinitevoid.jap', 'AKCLDHRQLXRCJGLG', 44, '2_17195841294036.jpg', '$2y$10$w/oJdmT.ZQZMw544cCSwQ.FxqPV/jp8AWgW4lBvB.vlPEXrSVAt/e', 'editor'),
+	(4, 'Enrico Formaggio', 'enrico.formaggio12@hotmail.it', 'NQOGWZXFLHYSUGSL', 27, '4_17195843390512.jpg', '$2y$10$Mq7qV25XU5O3RxVwbY4EaO3.c5Y7AMhcLQ1pHbmls6UsNlhPqWScK', 'user'),
+	(5, 'Irene Sprocati', 'irene.sprocati66@iisviolamarchesini.edu.it', 'LEFTVZVKRGDVMEVV', 41, '', '$2y$10$wL83VJNkRTlxz1U0PBf9j.uJpfQE5h4UCcvMOGbFeIJROd4Pqxzji', 'admin'),
 	(6, 'Ermenegilda Morandi', 'ermenegilda.morandi72@malevolentshrine.com', 'QPZKRVHATGZNPNIC', 19, NULL, '', 'user'),
 	(7, 'Irene Alfieri', 'irene.alfieri54@yahoo.com', 'EOSZCPEFXZZHAWLC', 45, NULL, '', 'user'),
 	(8, 'Eleonora Sterza', 'eleonora.sterza23@hotmail.it', 'AAFUQYPVLXMJPJQU', 25, NULL, '', 'user'),
@@ -219,7 +219,8 @@ INSERT INTO `users` (`id`, `username`, `email`, `fiscalcode`, `age`, `avatar`, `
 	(200, 'Leopoldo Melon', 'leopoldo.melon76@malevolentshrine.com', 'NEKXQHKCYXMMDNYI', 30, NULL, '', 'user'),
 	(201, 'Matteo Salviettini', 'matteo.salviettini@salvietta.com', 'MSSSOO00OO', 100, NULL, '', 'user'),
 	(202, 'Martino Crodino', 'martino.crodino@crodino.com', 'MCROSKLKLS', 22, NULL, '', 'user'),
-	(205, 'Francesco Marzano', 'francesco.marzaa104@gmail.com', 'FMEMFOMFO56MF', 27, '205_17195669714848.jpg', '', 'user');
+	(205, 'Francesco Marzano', 'francesco.marzaa104@gmail.com', 'FMEMFOMFO56MF', 27, '205_17195669714848.jpg', '', 'user'),
+	(216, 'marcello targone', 'tort.mar@rr.com', 'MRTHFISHFI', 68, '216_17195844455571.jpg', '$2y$10$lU13/v1xAMsws05i8dJwdurjuCH048ONlG2x4GcOuR1irRulI3Zsi', 'editor');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

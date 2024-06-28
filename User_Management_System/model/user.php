@@ -39,7 +39,19 @@ function storeUser(int $id,array $data){
     $age=$conn->escape_string($data['age']);
     $fiscalcode=$conn->escape_string($data['fiscalcode']);
     $avatar=$conn->escape_string($data['avatar']);
-    $sql="UPDATE users SET username='$username',email='$email',fiscalcode='$fiscalcode',age='$age',avatar='$avatar' WHERE id=$id";
+    $sql="UPDATE users SET username='$username',email='$email',fiscalcode='$fiscalcode',age='$age',avatar='$avatar'";
+    if($data['password'])
+    {
+      $data['password']= $data['password']?? 'testuser';//if password is not set use testuser
+    $password=password_hash($data['password'],PASSWORD_DEFAULT);
+    $sql.=",password='$password'";
+    }
+    if($data['roletype']){
+      $roletype=in_array($data['roletype'],getConfig('roletypes',[]))?$data['roletype']:'user';
+      $sql.=",roletype='$roletype'";
+    }
+        
+    $sql.=" WHERE id=$id";
     var_dump($sql);
     $res=$conn->query($sql);
     if($res )
@@ -65,7 +77,11 @@ function saveUser(array $data){
       $email=$conn->escape_string($data['email']);
       $fiscalcode=$conn->escape_string($data['fiscalcode']);
       $age=(int)$data['age'];
-      $sql="INSERT INTO users (username,email,fiscalcode,age) VALUES ('$username','$email','$fiscalcode',$age)";
+      $data['password']= $data['password']?? 'testuser';//if password is not set use testuser
+
+      $password=password_hash($data['password'],PASSWORD_DEFAULT);
+      $roletype=in_array($data['roletype'],getConfig('roletypes',[]))?$data['roletype']:'user';
+      $sql="INSERT INTO users (username,email,fiscalcode,age,password,roletype) VALUES ('$username','$email','$fiscalcode',$age,'$password','$roletype')";
       $res=$conn->query($sql);
       if($res )
       {

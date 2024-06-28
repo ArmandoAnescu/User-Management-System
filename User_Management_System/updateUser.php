@@ -23,7 +23,9 @@ if($id){
         'age'=> 0,
         'fiscalcode'=> '',
         'id'=> '',
-        'avatar'=>''
+        'avatar'=>'',
+        'roletype'=>'user',
+        'password'=>''
     ];
 }
 // var_dump($user);

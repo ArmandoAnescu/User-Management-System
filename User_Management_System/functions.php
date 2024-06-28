@@ -173,7 +173,9 @@ function copyAvatar(int $userId)
     }
     $FILE=$_FILES['avatar'];
     if(!is_uploaded_file($FILE['tmp_name'])){
+        $result['success']=true;
         $result['message']='FILE NOT UPLOADED VIA HTTP POST';
+        return $result; 
     }
     $finfo=finfo_open(FILEINFO_MIME);
     $info=finfo_file($finfo,$FILE['tmp_name']);
