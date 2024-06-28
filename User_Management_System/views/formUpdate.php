@@ -22,6 +22,13 @@
     </div>
 
     <div class="form-group row">
+        <label for="password" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10">
+            <input required type="password" class="form-control form-control-lg"value="" name="password" id="password" placeholder="Password">
+        </div>
+    </div>
+
+    <div class="form-group row">
         <label for="fiscalcode" class="col-sm-2 col-form-label">Fiscal Code</label>
         <div class="col-sm-10">
             <input required type="text" class="form-control form-control-lg"value="<?=$user['fiscalcode']?>" name="fiscalcode" id="fiscalcode" placeholder="FISCALCODE">
@@ -52,7 +59,7 @@
         <label for="avatar" class="col-sm-2 col-form-label">Avatar</label>
         <div class="col-sm-10">
             <input type="hidden" name="MAX_FILE_SIZE" value="300000"/>
-            <input required type="file" min="0"  onchange="previewFile" max="100"class="form-control form-control-lg" name="avatar" accept="image/jpeg">
+            <input type="file" min="0"  onchange="previewFile()" max="100"class="form-control form-control-lg" name="avatar" accept="image/jpeg">
         </div>
     </div>
 
