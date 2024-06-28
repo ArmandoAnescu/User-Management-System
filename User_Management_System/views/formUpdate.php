@@ -29,6 +29,20 @@
     </div>
 
     <div class="form-group row">
+        <label for="roletype" class="col-sm-2 col-form-label">Role</label>
+        <div class="col-sm-10">
+        <select name="roletype" id="roletype" class="form-control">
+            <?php
+                foreach (getConfig('roletypes',[]) as $role):
+                    $sel=$user['roletype']===$role?'selected':'';
+
+                    echo "<option $sel value='$role'> $role</option> ";
+                 endforeach; ?>
+        </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
         <label for="fiscalcode" class="col-sm-2 col-form-label">Fiscal Code</label>
         <div class="col-sm-10">
             <input required type="text" class="form-control form-control-lg"value="<?=$user['fiscalcode']?>" name="fiscalcode" id="fiscalcode" placeholder="FISCALCODE">
