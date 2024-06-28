@@ -28,7 +28,7 @@ $baseUrl = "$page?$params";
     <caption style="caption-side:top">Users List</caption>
     <thead>
         <tr>
-            <th colspan="7" class="text-center text-bg-dark" >
+            <th colspan="8" class="text-center text-bg-dark" >
                 <?= $totalRecords?> FOUND. Page <?= $pageI?> of <?= ceil($totalRecords/ $recordsPerPage)?>.
 
             </th>
@@ -37,6 +37,7 @@ $baseUrl = "$page?$params";
             <th class="<?= $orderBy==='id'? $orderDirClass: '' ?>" ><a href="<?=$page?>?search=<?=$search?>&recordsPerPage=<?=$recordsPerPage?>&orderBy=id&orderDir=<?= $orderDir ?>&page=<?=$pageI?>">ID</a></th><!--creo i le colonne con i dati da mostrare-->
             <th class="<?= $orderBy==='username'? $orderDirClass: '' ?>"><a href="<?=$page?>?search=<?=$search?>&recordsPerPage=<?=$recordsPerPage?>&orderDir<?= $orderDir?>&orderBy=username&orderDir=<?= $orderDir ?>&page=<?=$pageI?>">NAME</a></th>
             <th class="avatar" style="color:dodgerblue">AVATAR</th>
+            <th class="<?= $orderBy==='roletype'? $orderDirClass: '' ?>"><a href="<?=$page?>?search=<?=$search?>&recordsPerPage=<?=$recordsPerPage?>&orderDir<?= $orderDir?>&orderBy=roletype&orderDir=<?= $orderDir ?>&page=<?=$pageI?>">ROLE TYPE</a></th>
             <th class="<?= $orderBy==='fiscalcode'? $orderDirClass: '' ?>"><a href="<?=$page?>?search=<?=$search?>&recordsPerPage=<?=$recordsPerPage?>&orderBy=fiscalcode&orderDir=<?= $orderDir ?>&page=<?=$pageI?>">FISCAL CODE </a></th>
             <th class="<?= $orderBy==='email'? $orderDirClass: '' ?>"><a href="<?=$page?>?search=<?=$search?>&recordsPerPage=<?=$recordsPerPage?>&orderBy=email&orderDir=<?= $orderDir ?>&page=<?=$pageI?>">EMAIL </a></th>
             <th class="<?= $orderBy==='age'? $orderDirClass: '' ?>"><a href="<?=$page?>?search=<?=$search?>&recordsPerPage=<?=$recordsPerPage?>&orderBy=age&orderDir=<?= $orderDir ?>&page=<?=$pageI?>">AGE </a></th>
@@ -56,6 +57,7 @@ $baseUrl = "$page?$params";
                     <td><?= $utente['id'];?></td>
                     <td><?= $utente['username'];?></td><!-- inserisco i vari campi -->
                     <td><img src="<?=$avatarImg?>" alt="pfp"></td>
+                    <td><?= $utente['roletype'];?></td>
                     <td><?= $utente['fiscalcode'];?></td>
                     <td><a href="mailto:<?= $utente['email']?>"><?= $utente['email'];?></a></td><!-- aggiungo anche il link per scrivere una email -->
                     <td><?= $utente['age']; ?></td>
@@ -81,7 +83,7 @@ $baseUrl = "$page?$params";
             ?>
             <tfoot>
             <tr>
-                <td colspan="7">
+                <td colspan="8">
                     <?php
                     require 'views/navigation.php';
                     echo createPagination($totalRecords,$recordsPerPage,$pageI,$baseUrl);
@@ -92,7 +94,7 @@ $baseUrl = "$page?$params";
         <?php
         }else{ ?>
             <tr>
-                <td colspan="7">No records found</td><!-- Se non ci sono user o i par della ricerca non trovano niente lo dico -->
+                <td colspan="8">No records found</td><!-- Se non ci sono user o i par della ricerca non trovano niente lo dico -->
             </tr>
             <?php
         }
