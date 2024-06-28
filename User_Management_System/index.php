@@ -28,6 +28,7 @@ require_once 'headerInclude.php';
 // $orderBy=in_array($orderBy,$orderByColumns)?$orderBy:null;
 // require_once 'views/top.php';//aggiungo la nav bar, le funzioni e la parte sotto
 // require_once 'views/nav.php';
+require_once 'views/login.php';
 ?> 
 <!-- Begin page content -->
 <main class="flex-shrink-0">
