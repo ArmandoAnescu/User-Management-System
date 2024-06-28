@@ -21,7 +21,11 @@ switch($action){
     case 'save':
         $data=$_POST;
         $res=saveUser($data);
-        if($res){
+        if($res['id']>0){
+            $resCopy=copyAvatar($res['id']);
+            if($resCopy['success']){
+                updateUserAvatar($res['id'],$resCopy['filename']);
+            } 
             $message='Aggiunto nuovo user '.$data['username'];
         }else{
             $message='Impossibile aggiungere nuovo utente '.$data['username'];

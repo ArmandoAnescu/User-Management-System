@@ -227,3 +227,4 @@ function removeOldAvatar(int $id){
         unlink($thumbNailName);
     }
 }
+

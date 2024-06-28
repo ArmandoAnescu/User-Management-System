@@ -22,7 +22,8 @@ if($id){
         'email'=> '',
         'age'=> 0,
         'fiscalcode'=> '',
-        'id'=> ''
+        'id'=> '',
+        'avatar'=>''
     ];
 }
 // var_dump($user);

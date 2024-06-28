@@ -55,7 +55,11 @@ function saveUser(array $data){
        * @var $conn mysqli
        */
       $conn=$GLOBALS['mysqli'];
-      $result=0;
+      $result=[
+         'id'=>0,
+         'success'=>false,
+         'message'=>'PROBLEM IN SAVING USER',
+     ];
       $username=$conn->escape_string($data['username']);
       $email=$conn->escape_string($data['email']);
       $fiscalcode=$conn->escape_string($data['fiscalcode']);
@@ -64,9 +68,24 @@ function saveUser(array $data){
       $res=$conn->query($sql);
       if($res )
       {
-         $result= $conn->affected_rows;
+         $result['id']= $conn->insert_id;
+         $result['success']=true;
       }else{
-         $result=-1;
+         $result['message']=$conn->error;
       }
       return $result;
   }
+function updateUserAvatar(int $id,string $avatar=null)
+{
+   if(!$avatar)
+   {
+      return false;
+   }
+   $conn=$GLOBALS['mysqli'];
+   $avatar=$conn->escape_string($avatar);
+   $sql="UPDATE users SET avatar='$avatar' WHERE id=$id";
+   $res=$conn->query($sql);
+   return $res && $conn->affected_rows;
+
+
+}
